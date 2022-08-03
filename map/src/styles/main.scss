@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'BlackLetter';
+    src: url('../../assets/font/BlackletterShadow-6YAA.ttf');
+}
+html,body{
+    height: 100%;
+    margin: 0%;
+}
+
+.Title {
+    height: 100vh;
+    font-family:'BlackLetter';  
+    display:flex;
+    justify-content: center;  
+    align-items: center;
+}
