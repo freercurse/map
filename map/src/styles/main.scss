@@ -7,10 +7,40 @@ html,body{
     margin: 0%;
 }
 
+input{
+    font-size: 25px;
+    text-align: center;
+}
+
 .Title {
     height: 100vh;
     font-family:'BlackLetter';  
+    font-size: xx-large;
     display:flex;
     justify-content: center;  
     align-items: center;
+    flex-direction: column;   
+
+    .entry:hover{
+        color: aliceblue;
+        cursor: pointer;
+    }
+
+    .entry:active{
+        color: gold;
+    }
+   
+    .EntryForm{
+        display: flex;
+        flex-direction: row;        
+        align-items: center;   
+        
+        .seed{
+            border-width: 5px;
+            min-width: 12%;
+            min-height: 3%;
+            margin-right: 1%;
+        }
+    
+    }
 }
