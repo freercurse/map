@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'BlackLetter';
-    src: url('../../assets/font/BlackletterShadow-6YAA.ttf');
+    src: url('../../assets/font/BlackletterExtrabold-51DV.ttf');
 }
 html,body{
     height: 100%;
@@ -10,6 +10,7 @@ html,body{
 input{
     font-size: 25px;
     text-align: center;
+    
 }
 
 .Title {
@@ -27,7 +28,7 @@ input{
     }
 
     .entry:active{
-        color: gold;
+        color: gold;        
     }
    
     .EntryForm{
@@ -37,10 +38,17 @@ input{
         
         .seed{
             border-width: 5px;
-            min-width: 12%;
-            min-height: 3%;
-            margin-right: 1%;
+            min-width: 12vw;
+            min-height: 3vh;
+            margin-right: 1%;      
+            animation-name: toGame;
+            animation-duration: 5s;     
         }
     
     }
+}
+
+@keyframes toGame {
+    from {width: 12vw; height: 3vh;}
+    to{width:35vw; height: 45vh;}
 }
