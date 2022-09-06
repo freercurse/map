@@ -58,12 +58,21 @@ input{
             animation-fill-mode: forwards;
         }
 
-        .seed.is-game-closing{
-            animation-name: toSeed;
-            animation-duration: 5s;
-            animation-fill-mode: forwards;
-        }
+       
     
+    }
+
+    .game{
+        width:40vw;
+        height:50vh;
+        border-width: 5px;
+        border-style: solid;
+    }
+
+    .game.is-game-closing{
+        animation-name: toSeed;
+        animation-duration: 5s;
+        animation-fill-mode: forwards;
     }
 }
 
