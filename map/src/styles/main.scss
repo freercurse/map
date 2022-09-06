@@ -2,6 +2,14 @@
     font-family: 'BlackLetter';
     src: url('../../assets/font/BlackletterExtrabold-51DV.ttf');
 }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; 
+}
+
 html,body{
     height: 100%;
     margin: 0%;
@@ -36,19 +44,35 @@ input{
         flex-direction: row;        
         align-items: center;   
         
+        
         .seed{
             border-width: 5px;
-            min-width: 12vw;
-            min-height: 3vh;
-            margin-right: 1%;      
+            width: 20vw;
+            height: 5vh;
+            margin-right: 1%;                
+        }
+
+        .seed.is-game-opening{
             animation-name: toGame;
-            animation-duration: 5s;     
+            animation-duration: 5s;
+            animation-fill-mode: forwards;
+        }
+
+        .seed.is-game-closing{
+            animation-name: toSeed;
+            animation-duration: 5s;
+            animation-fill-mode: forwards;
         }
     
     }
 }
 
 @keyframes toGame {
-    from {width: 12vw; height: 3vh;}
-    to{width:35vw; height: 45vh;}
+    from {width: 20vw; height: 5vh;}
+    to{width:40vw; height: 50vh;}
+}
+
+@keyframes toSeed {
+    from {width: 40vw; height: 50vh;}
+    to{width:20vw; height: 5vh;}
 }
