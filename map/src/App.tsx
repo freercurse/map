@@ -1,11 +1,13 @@
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import {Tooltip} from 'antd'
 import { ChangeEvent, createRef, useEffect, useRef, useState } from 'react';
+import Board from './components/board'
 
 
 function App() {
   const [seed, setSeed] = useState("")
   const [game, setGame] = useState(false)
+  const [grid, setGrid] = useState<Grid[]>([])
   const [update, setUpdate] = useState(false) 
   const boardRef = createRef<HTMLInputElement>()
   const containerRef  = useRef<HTMLCanvasElement>(null)
@@ -15,9 +17,10 @@ function App() {
   useEffect(() => {
         
     context?.clearRect(0,0,context.canvas.width,context.canvas.height)   
+    Board(context? context:undefined, grid)
     setContext(containerRef.current && containerRef.current.getContext("2d"));  
    
-  }, [context,])
+  }, [context, grid])
 
   //handles input and window listeners
   useEffect(() => {
@@ -25,7 +28,7 @@ function App() {
     window.addEventListener('keypress', e => handleInput(e), {once:true})             
     return () => window.removeEventListener('keypress' , e => handleInput(e))
       
-},[update])
+  },[update])
 
 
 
@@ -43,6 +46,7 @@ function App() {
       container?.classList.toggle('is-game-closing')   
          
       setTimeout(() => {
+        setSeed("")
         setGame(false)        
       },5000)
     }
@@ -55,7 +59,7 @@ function App() {
 
   //handles user input
   function handleInput(e: KeyboardEvent): any {
-    console.log(e)
+    console.log(e.key)    
     setUpdate(!update)
   }
 
@@ -70,9 +74,9 @@ function App() {
       </div>:
       <div>
         <canvas
-          width={400}
+          width={500}
           height={500}
-          className={"game"}
+          className="game"
           ref={containerRef}
         />
       </div>}     
