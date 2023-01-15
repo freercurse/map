@@ -13,6 +13,27 @@ function App() {
   const containerRef  = useRef<HTMLCanvasElement>(null)
   const [context, setContext] = useState<CanvasRenderingContext2D |undefined| null>(containerRef.current?.getContext('2d'))
 
+  //Intial SETUP
+  function gridSetup() {
+    let wNum = 500 / 40 -1
+    let hNum = 500 / 40 - 1
+    let start : Grid[] = []
+
+    for(let ii = 0; ii++, ii<=hNum;){
+
+      for(let i = 0; i++, i<=wNum;){
+
+        let square : Grid = {
+          corX: 40 * i ,
+          corY: 40 * ii,
+          colour: "red"
+        }
+
+        start.push(square)
+      }
+    }
+    return start
+  }
   //handle screen update and canvas refresh
   useEffect(() => {
         
@@ -30,8 +51,6 @@ function App() {
       
   },[update])
 
-
-
   //handles change between seed input state and canvas game state
   function toggleGame(event:any) {
     const board = boardRef.current
@@ -39,7 +58,10 @@ function App() {
     
     if(event?.code === "Enter"){
       board?.classList.toggle('is-game-opening',true)     
-      setTimeout(() => {setGame(true)},5000)          
+      setTimeout(() => {
+        setGame(true)
+        setGrid(gridSetup())
+      },5000)          
     }
 
     if(event === "endGame"){
@@ -54,12 +76,14 @@ function App() {
 
   //handles change of seed input value
   function handleChange(e:ChangeEvent<HTMLInputElement>) {
-    setSeed(e.target.value)
+    if(e.target.value.length <= 12) {
+      setSeed(e.target.value)
+    }
+    
   }
 
   //handles user input
-  function handleInput(e: KeyboardEvent): any {
-    console.log(e.key)    
+  function handleInput(e: KeyboardEvent): any {       
     setUpdate(!update)
   }
 
@@ -67,7 +91,7 @@ function App() {
     <div className='Title'>
       <h1 className='entry' onClick={() =>toggleGame("endGame")}>Map</h1>
       {!game ?<div className='EntryForm'>        
-        <input onKeyUp={(e) => toggleGame(e)} ref={boardRef} className='seed' type="number" maxLength={12} value={seed} onChange={(e) => {handleChange(e)}}/>              
+        <input onKeyUp={(e) => toggleGame(e)} ref={boardRef} className='seed' type="number" value={seed} onChange={(e) => {handleChange(e)}}/>              
         <Tooltip title="type in a random number to use as a seed. 1-12" placement='rightTop'>
            <QuestionCircleOutlined />
         </Tooltip>       
